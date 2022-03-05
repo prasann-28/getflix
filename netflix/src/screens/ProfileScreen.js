@@ -1,8 +1,8 @@
 import React from 'react'
-import Nav from '../Nav'
+import Nav from '../components/Nav'
 import {useSelector } from 'react-redux'
 import {selectUser} from '../features/userSlice'
-import { auth } from '../fbase'
+import { auth } from '../components/fbase'
 import './ProfileScreen.css'
 
 function ProfileScreen() {

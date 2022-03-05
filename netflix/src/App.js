@@ -6,7 +6,7 @@ import { BrowserRouter as Router,
         Routes,
         Route } from "react-router-dom";
 import './App.css';
-import { auth } from './fbase';
+import { auth } from './components/fbase';
 import {useDispatch, useSelector } from 'react-redux'
 import {login,logout, selectUser} from './features/userSlice'
 
@@ -45,6 +45,7 @@ function App() {
         <Routes>
         <Route exact path="/profile" element={<ProfileScreen/>} />
         <Route exact path="/" element={<HomeScreen/>} />
+        {/* <Route exact path="/watch/:id" render={(props) => <Watch movie={movie} {...props} /> } /> */}
       </Routes>
       )}
     </Router>

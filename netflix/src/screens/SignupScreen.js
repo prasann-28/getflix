@@ -1,5 +1,5 @@
 import React, {useRef} from 'react'
-import { auth } from '../fbase';
+import { auth } from '../components/fbase';
 import './SignupScreen.css'
 
 function SignupScreen() {
