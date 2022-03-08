@@ -36,6 +36,7 @@ function App() {
   },[dispatch])
 
   return (
+    
     <div className="app">
      
     <Router>
@@ -43,8 +44,8 @@ function App() {
         <LoginScreen />
       ):(
         <Routes>
-        <Route exact path="/profile" element={<ProfileScreen/>} />
         <Route exact path="/" element={<HomeScreen/>} />
+        <Route exact path="/profile" element={<ProfileScreen/>} />
         {/* <Route exact path="/watch/:id" render={(props) => <Watch movie={movie} {...props} /> } /> */}
       </Routes>
       )}

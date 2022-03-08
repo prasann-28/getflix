@@ -4,12 +4,19 @@ import {useSelector } from 'react-redux'
 import {selectUser} from '../features/userSlice'
 import { auth } from '../components/fbase'
 import './ProfileScreen.css'
+import { getAuth, sendPasswordResetEmail } from "firebase/auth";
 
-function ProfileScreen() {
 
-    const user = useSelector(selectUser)
+function ProfileScreen()  {
+    
+    const auth =  getAuth()
+    console.log(auth.currentUser.email)
+    const user = auth.currentUser
 
     return (
+        !auth.currentUser.emailVerified ? <div className="profileScreen"> <h1 className='verify-message'>Please verify using the email in your inbox</h1>
+        <h2 className='verify-messageh2'>If done already, <u onClick={() => window.location.reload()}>click here</u></h2></div>
+        :
         <div className="profileScreen">
             <Nav/>
             <div className="profileScreen__body">
@@ -23,7 +30,7 @@ function ProfileScreen() {
                         <p></p>
 
 
-
+                        <button className='reset-text' onClick={() => sendPasswordResetEmail(auth,user.email).then(() => window.alert('emailsent'))}>Reset Password</button>
                         <button onClick={() => auth.signOut()} className="profileScreen__signOut">Sign Out</button>
                     </div>
                 </div>

@@ -26,7 +26,7 @@ function Banner({selectedMovie, setPlayerVisible, playerVisible}) {
 
     return (
 
-        playerVisible? <div className='video-player'><ReactPlayer className='react_player' url='https://www.youtube.com/watch?v=EU6I8TxU6Z4' controls playing pip ></ReactPlayer>
+        playerVisible? <div className='video-player'><ReactPlayer className='react_player' url='https://www.youtube.com/watch?v=XTDH7gSqwiQ' controls playing pip ></ReactPlayer>
         <button onClick={() => setPlayerVisible(false)} className='close-button'><img  className='close-logo' src='https://flaticons.net/icon.php?slug_category=mobile-application&slug_icon=close' alt='Close button' /></button>        
         </div>
         :

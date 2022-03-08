@@ -12,11 +12,20 @@ function SignupScreen() {
 
         auth.createUserWithEmailAndPassword(
             emailRef.current.value,
-            passwordRef.current.value).then((authUser) => {
-                    console.log(authUser); 
+            passwordRef.current.value).then( async (authUser) => {
+                // console.log(authUser)
+                window.alert(authUser.user.emailVerified) 
+                authUser.user.sendEmailVerification().then(() =>{
+                    window.alert('email sent')
+            }).catch((error) =>{
+                alert(error.message)
+            })                
             }).catch((error) => {
                 alert(error.message);
             })
+
+        
+
     };
 
     const signIn = (e) => {
