@@ -6,6 +6,7 @@ import requests from '../components/Requests'
 import Row from '../components/Row'
 import { getAuth } from "firebase/auth";
 
+
 function HomeScreen() {
 
     const [selectedMovie,setSelectedMovie] = useState(null)

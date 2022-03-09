@@ -14,6 +14,7 @@ function LoginScreen() {
             const data = await getDocs(usersCollectionRef)
             if(data){
                 setUsers(data?.docs.map((doc) => ({...doc?.data(), id: doc?.id})))
+                console.log(users)
             }
         }
 
@@ -54,6 +55,7 @@ function LoginScreen() {
                             </button>
                             <div>
                     {users.map((user) => {
+                        console.log(users)
                         return <div>
                             {user.email}
                         </div>

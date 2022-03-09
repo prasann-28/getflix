@@ -1,11 +1,28 @@
-import React, {useRef} from 'react'
+import React, {useState,useEffect, useRef} from 'react'
 import { auth } from '../components/fbase';
 import './SignupScreen.css'
+import db from '../components/fbase'
+import {collection, getDocs} from "firebase/firestore";
+import { doc, setDoc } from "firebase/firestore"; 
 
 function SignupScreen() {
      
     const emailRef = useRef(null);
     const passwordRef = useRef(null);
+    const usersCollectionRef = collection(db, 'users');
+    const [users, setUsers] = useState([])
+
+    useEffect( () => {
+        const getUsers = async () => {
+            const data = await getDocs(usersCollectionRef)
+            if(data){
+                setUsers(data?.docs.map((doc) => ({...doc?.data(), id: doc?.id})))
+                console.log(users)
+            }
+        }
+
+        getUsers()
+    })
 
     const register = (e) => {
         e.preventDefault();
@@ -15,8 +32,13 @@ function SignupScreen() {
             passwordRef.current.value).then( async (authUser) => {
                 // console.log(authUser)
                 window.alert(authUser.user.emailVerified) 
-                authUser.user.sendEmailVerification().then(() =>{
+                authUser.user.sendEmailVerification().then( async () =>{
                     window.alert('email sent')
+                    
+                    await setDoc(doc(db, "users", authUser.user.email), {
+                    //    add things to firestore
+                        hello: 'world. This works'
+                      },{ merge: true });
             }).catch((error) =>{
                 alert(error.message)
             })                
@@ -34,9 +56,13 @@ function SignupScreen() {
         auth.signInWithEmailAndPassword(
             emailRef.current.value,
             passwordRef.current.value
-        ).then((authUser) => {
+        ).then( async (authUser) => {
             console.log(authUser); 
             window.alert("Login successful")
+            await setDoc(doc(db, "users", authUser.user.email), {
+                //    add things to firestore
+                    hello: 'world. This works really'
+                  },{ merge: true });
     }).catch((error) => {
         alert(error.message);
     })
