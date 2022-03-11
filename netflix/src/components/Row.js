@@ -4,7 +4,7 @@ import "./Row.css"
 import "./Banner.css"
 import Watch from './Watch'
 
-function Row({ title, fetchUrl, isLargeRow = false, setSelectedMovie, setPlayerVisibility }) {
+function Row({ title, fetchUrl, isLargeRow = false, setSelectedMovie }) {
 
     const [movies, setMovies] = useState([]);
     // const [selectedMovie,setSelectedMovie] = useState(null)
@@ -13,7 +13,6 @@ function Row({ title, fetchUrl, isLargeRow = false, setSelectedMovie, setPlayerV
 
     const toggleSelection = (movie) => {
         setSelectedMovie(movie)
-        setPlayerVisibility(false)
     }
 
     useEffect(() =>{

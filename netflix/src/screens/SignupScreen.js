@@ -2,27 +2,15 @@ import React, {useState,useEffect, useRef} from 'react'
 import { auth } from '../components/fbase';
 import './SignupScreen.css'
 import db from '../components/fbase'
-import {collection, getDocs} from "firebase/firestore";
-import { doc, setDoc } from "firebase/firestore"; 
+// import {collection, getDocs} from "firebase/firestore";
+import { doc, setDoc } from "firebase/firestore";
+import {serverStamp} from "../components/fbase"
 
 function SignupScreen() {
      
     const emailRef = useRef(null);
     const passwordRef = useRef(null);
-    const usersCollectionRef = collection(db, 'users');
-    const [users, setUsers] = useState([])
 
-    useEffect( () => {
-        const getUsers = async () => {
-            const data = await getDocs(usersCollectionRef)
-            if(data){
-                setUsers(data?.docs.map((doc) => ({...doc?.data(), id: doc?.id})))
-                console.log(users)
-            }
-        }
-
-        getUsers()
-    })
 
     const register = (e) => {
         e.preventDefault();
@@ -37,7 +25,11 @@ function SignupScreen() {
                     
                     await setDoc(doc(db, "users", authUser.user.email), {
                     //    add things to firestore
-                        hello: 'world. This works'
+                        email: authUser.user.email,
+                        plans: 'basic',
+                        lastLogin: serverStamp.now(),
+                        timeWatched: 0,
+                        watchLaterList: [],
                       },{ merge: true });
             }).catch((error) =>{
                 alert(error.message)
@@ -61,7 +53,7 @@ function SignupScreen() {
             window.alert("Login successful")
             await setDoc(doc(db, "users", authUser.user.email), {
                 //    add things to firestore
-                    hello: 'world. This works really'
+                    lastLogin: serverStamp.now()
                   },{ merge: true });
     }).catch((error) => {
         alert(error.message);

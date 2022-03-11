@@ -5,6 +5,7 @@ import {selectUser} from '../features/userSlice'
 import { auth } from '../components/fbase'
 import './ProfileScreen.css'
 import { getAuth, sendPasswordResetEmail } from "firebase/auth";
+import avatar from '../images/netflix-avatar.png'
 
 
 function ProfileScreen()  {
@@ -22,7 +23,7 @@ function ProfileScreen()  {
             <div className="profileScreen__body">
             <h1>Edit Profile</h1>
             <div className="profileScreen__info">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/0/0b/Netflix-avatar.png" alt=""></img>
+                <img src={avatar} alt=""></img>
                 <div className="profileScreen__details">
                     <h2>{user.email}</h2>
                     <div className="profileScreen__plans">

@@ -12,7 +12,7 @@ function HomeScreen() {
     const [selectedMovie,setSelectedMovie] = useState(null)
     const [playerVisible, setPlayerVisible] = useState(false);
     const auth =  getAuth()
-    console.log(auth.currentUser.email)
+    // console.log(auth.currentUser.email)
     
 
     return (
@@ -28,15 +28,14 @@ function HomeScreen() {
             fetchUrl={requests.fetchNetflixOriginals}
             isLargeRow
             setSelectedMovie={setSelectedMovie}
-            playerVisible={playerVisible}
-            setPlayerVisible={setPlayerVisible}
+            
             />
-            <Row title="Trending Now" fetchUrl={requests.fetchTrending} setSelectedMovie={setSelectedMovie} setPlayerVisible={setPlayerVisible}/>
-            <Row title="Action Movies" fetchUrl={requests.fetchActionMovies} setSelectedMovie={setSelectedMovie} setPlayerVisible={setPlayerVisible} />
-            <Row title="Comedy Movies" fetchUrl={requests.fetchComedyMovies} setSelectedMovie={setSelectedMovie} setPlayerVisible={setPlayerVisible} />
-            <Row title="Horror Movies" fetchUrl={requests.fetchHorrorMovies} setSelectedMovie={setSelectedMovie} setPlayerVisible={setPlayerVisible} />
-            <Row title="Romance Movies" fetchUrl={requests.fetchRomanceMovies} setSelectedMovie={setSelectedMovie} setPlayerVisible={setPlayerVisible} />
-            <Row title="Documentaries" fetchUrl={requests.fetchDocumentaries} setSelectedMovie={setSelectedMovie} setPlayerVisible={setPlayerVisible} />
+            <Row title="Trending Now" fetchUrl={requests.fetchTrending} setSelectedMovie={setSelectedMovie} />
+            <Row title="Action Movies" fetchUrl={requests.fetchActionMovies} setSelectedMovie={setSelectedMovie}  />
+            <Row title="Comedy Movies" fetchUrl={requests.fetchComedyMovies} setSelectedMovie={setSelectedMovie}  />
+            <Row title="Horror Movies" fetchUrl={requests.fetchHorrorMovies} setSelectedMovie={setSelectedMovie}  />
+            <Row title="Romance Movies" fetchUrl={requests.fetchRomanceMovies} setSelectedMovie={setSelectedMovie}  />
+            <Row title="Documentaries" fetchUrl={requests.fetchDocumentaries} setSelectedMovie={setSelectedMovie}  />
 
         </div>
     )

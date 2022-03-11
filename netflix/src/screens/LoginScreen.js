@@ -1,31 +1,32 @@
 import React, {useState, useEffect} from 'react'
 import "./LoginScreen.css"
 import SignupScreen from "./SignupScreen"
-import db from '../components/fbase';
-import {collection, getDocs} from "firebase/firestore";
+// import db from '../components/fbase';
+// import {collection, getDocs} from "firebase/firestore";
+import logo from '../images/netflix-logo.png'
 
 function LoginScreen() {
     const [signIn, setSignIn] = useState(false);
-    const [users, setUsers] = useState([]);
-    const usersCollectionRef = collection(db, 'users');
+    // const [users, setUsers] = useState([]);
+    // const usersCollectionRef = collection(db, 'users');
 
-    useEffect( () => {
-        const getUsers = async () => {
-            const data = await getDocs(usersCollectionRef)
-            if(data){
-                setUsers(data?.docs.map((doc) => ({...doc?.data(), id: doc?.id})))
-                console.log(users)
-            }
-        }
+    // useEffect( () => {
+    //     const getUsers = async () => {
+    //         const data = await getDocs(usersCollectionRef)
+    //         if(data){
+    //             setUsers(data?.docs.map((doc) => ({...doc?.data(), id: doc?.id})))
+    //             console.log(users)
+    //         }
+    //     }
 
-        getUsers()
-    }, [])
+    //     getUsers()
+    // }, [])
 
     return (
         // <userList></userList>
         <div className="loginScreen">
             <div className="loginScreen__background">
-                <img className="loginScreen__logo" src="http://assets.stickpng.com/images/580b57fcd9996e24bc43c529.png" alt="" />
+                <img className="loginScreen__logo" src={logo} alt="" />
                 <button onClick={() => setSignIn(true)} className="loginScreen__button">
                     Sign in
                 </button>
@@ -53,14 +54,14 @@ function LoginScreen() {
                              className="loginScreen__getStarted">
                                 GET STARTED
                             </button>
-                            <div>
+                            {/* <div>
                     {users.map((user) => {
                         console.log(users)
                         return <div>
                             {user.email}
                         </div>
                     })}
-                </div>
+                </div> */}
                         </form>
                     </div>
                     </>
