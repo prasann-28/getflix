@@ -4,10 +4,10 @@ import axios from './axios'
 import requests from './Requests'
 import ReactPlayer from 'react-player'
 import db from '../components/fbase';
-import {collection, getDocs, increment, updateDoc} from "firebase/firestore";
-import { doc, setDoc, arrayUnion, arrayRemove, getDoc } from "firebase/firestore";
+import { increment, updateDoc} from "firebase/firestore";
+import { doc, setDoc, arrayUnion } from "firebase/firestore";
 
-import {serverStamp} from "../components/fbase"
+// import {serverStamp} from "../components/fbase"
 import { getAuth } from "firebase/auth";
 
 
@@ -15,7 +15,7 @@ function Banner({selectedMovie, setPlayerVisible, playerVisible}) {
 
     const [movie, setMovie] = useState([]);
     const auth = getAuth()
-    const userRef = doc(db, "users", auth.currentUser.email);
+    // const userRef = doc(db, "users", auth.currentUser.email);
     
 
     useEffect(() => {
@@ -34,7 +34,7 @@ function Banner({selectedMovie, setPlayerVisible, playerVisible}) {
     
 
     const playMovie = async () => {
-        const currentUserDetails = await getDoc(userRef);
+        // const currentUserDetails = await getDoc(userRef);
         setPlayerVisible(true)
         setDoc(doc(db,'movies', movie.name), {
             timesPlayed: increment(1)

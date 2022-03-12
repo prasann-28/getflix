@@ -1,0 +1,12 @@
+* {
+    background-color: black;
+}
+.watchScreen{
+    object-fit: cover;
+    height: 100%;
+}
+
+.watch-body{
+    background-color: black;
+    height: 100%;
+}

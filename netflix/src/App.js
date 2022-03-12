@@ -9,7 +9,7 @@ import './App.css';
 import { auth } from './components/fbase';
 import {useDispatch, useSelector } from 'react-redux'
 import {login,logout, selectUser} from './features/userSlice'
-
+import WatchLaterScreen from './screens/WatchLaterScreen'
 
 function App() {
   
@@ -46,7 +46,7 @@ function App() {
         <Routes>
         <Route exact path="/" element={<HomeScreen/>} />
         <Route exact path="/profile" element={<ProfileScreen/>} />
-        {/* <Route exact path="/watch/:id" render={(props) => <Watch movie={movie} {...props} /> } /> */}
+        <Route exact path="/watchlist" element={<WatchLaterScreen/>} />
       </Routes>
       )}
     </Router>
