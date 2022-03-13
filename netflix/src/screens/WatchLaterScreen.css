@@ -1,12 +1,94 @@
-* {
+.full-div{
+    height: 100vh;
     background-color: black;
 }
-.watchScreen{
-    object-fit: cover;
-    height: 100%;
+.movies{
+    color: #fff;
+    background-color: black;
+    margin-left: 20px;
+    background-color: black;
+    display: flex;
+    flex-flow: column;
+    
+    
 }
 
-.watch-body{
+.movies__posters{
+    
+    overflow-y: hidden;
+    overflow-x: scroll;
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+    /* height: 100%; */
     background-color: black;
+    
+    
+}
+
+.movies__posters::-webkit-scrollbar{
+    display: none;
+}
+
+.movies__poster:hover {
+    transform: scale(1.08);
+    opacity: 1;
+    
+}
+
+
+.movies__poster{
     height: 100%;
+    max-height: 200px;
+    margin-right: 10px;
+    object-fit: contain;
+    transition: transform 350ms;
+    /* width: 100%; */
+    padding: 10px;
+    display: flex;
+}
+
+.movies__posterLarge{
+    max-height: 250px;
+    object-fit: contain;
+}
+
+.movies__posterLarge:hover {
+    cursor: pointer;
+    transform: scale(1.09);
+    opacity: 1;
+    
+
+}
+
+.movies__button{
+    visibility: hidden;
+    position:relative;    
+    cursor: pointer;
+    border: none;
+    outline: none;
+    color: #fff;
+    font-weight: 700;
+    border-radius: 0.2vw;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-top: 0.5rem;
+    background-color: rgba(31, 31, 31,0.5);
+    padding-bottom: 0.5rem ;
+}
+
+.movies__button:hover{
+    visibility: visible;
+    color: black;
+    background-color: red;
+    transition: all 0.9s;
+} 
+.movies__button__layout{
+    display: flex;
+    background: transparent;
+    
+}
+
+.movie-card{
+ object-fit: contain;   
 }

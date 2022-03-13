@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import Nav from '../components/Nav'
-import './HomeScreen.css'
+// import './HomeScreen.css'
 import Banner from '../components/Banner'
 import requests from '../components/Requests'
 import Row from '../components/Row'
@@ -8,7 +8,7 @@ import { getAuth } from "firebase/auth";
 import { doc, getDoc, getDocs } from 'firebase/firestore'
 import db from '../components/fbase'
 // import { set } from 'immer/dist/internal'
-
+import './WatchLaterScreen.css'
 
 function WatchLaterScreen() {
 
@@ -28,7 +28,8 @@ function WatchLaterScreen() {
         const currentUserDoc = await getDoc(docRef)
         const currentUserMovies = currentUserDoc.data().watchLaterList
         setMovies(currentUserMovies)
-        setSelectedMovie(currentUserMovies[0])
+        // eslint-disable-next-line no-unused-expressions
+        !selectedMovie? setSelectedMovie(currentUserMovies[0]) : null
         
       }
           fetchWatchList();
@@ -39,20 +40,20 @@ function WatchLaterScreen() {
 }
 
     return (
-        <>
+        <div className='full-div'>
         <Nav />
             <Banner selectedMovie={selectedMovie} setPlayerVisible={setPlayerVisible} playerVisible={playerVisible} />        
-       <div className="row">           
-            <div className="row__posters">
+       <div className="movies">           
+            <div className="movies__posters">
 
             {movies.map(
                 (movie) => (  
                 (movie.backdrop_path) && (
                     <img 
                     key={movie.id}
-                    className={`row__poster`}
+                    className={`movies__poster`}
                     src={`${base_url}${
-                        movie.backdrop_path
+                        movie.poster_path
                     }`} alt={movie.name} 
                     onClick = {() => toggleSelection(movie)}
                     />
@@ -71,8 +72,9 @@ function WatchLaterScreen() {
                 )))}
 
             </div>
+            
         </div>
-        </>
+        </div>
         
         
     )
