@@ -17,18 +17,14 @@ function WatchLaterScreen() {
     const [selectedMovie, setSelectedMovie] = useState(null)
     const auth =  getAuth()
     const base_url = "https://image.tmdb.org/t/p/original/";
-    // console.log(auth.currentUser.email)
     
-    // const getWatchList = async () => {
-    //   const currentUser = await 
-    // }
     useEffect(() =>{
       async function fetchWatchList(){
         const docRef = doc(db, "users", auth.currentUser.email);
         const currentUserDoc = await getDoc(docRef)
         const currentUserMovies = currentUserDoc.data().watchLaterList
         setMovies(currentUserMovies)
-        // eslint-disable-next-line no-unused-expressions
+        
         !selectedMovie? setSelectedMovie(currentUserMovies[0]) : null
         
       }
@@ -58,16 +54,6 @@ function WatchLaterScreen() {
                     onClick = {() => toggleSelection(movie)}
                     />
                     
-                    
-                //     <div className={`row__poster ${isLargeRow && "row__posterLarge"}`} 
-                //     style={{
-                //     backgroundImage: "url(`${base_url}${isLargeRow ? movie.poster_path : movie.backdrop_path}`)", 
-                //     backgroundSize: '100%',
-                //     backgroundPosition: 'center center',
-                //     objectFit: 'contain',
-                // }}>
-                //     <button className='row__button'>Play</button>
-                // </div>
                     
                 )))}
 
