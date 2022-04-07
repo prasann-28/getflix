@@ -2,10 +2,8 @@ import React, { useState, useEffect } from 'react'
 import Nav from '../components/Nav'
 // import './HomeScreen.css'
 import Banner from '../components/Banner'
-import requests from '../components/Requests'
-import Row from '../components/Row'
 import { getAuth } from "firebase/auth";
-import { doc, getDoc, getDocs } from 'firebase/firestore'
+import { doc, getDoc } from 'firebase/firestore'
 import db from '../components/fbase'
 // import { set } from 'immer/dist/internal'
 import './WatchLaterScreen.css'
@@ -25,6 +23,7 @@ function WatchLaterScreen() {
         const currentUserMovies = currentUserDoc.data().watchLaterList
         setMovies(currentUserMovies)
         
+        // eslint-disable-next-line no-unused-expressions
         !selectedMovie? setSelectedMovie(currentUserMovies[0]) : null
         
       }
@@ -50,7 +49,7 @@ function WatchLaterScreen() {
                     className={`movies__poster`}
                     src={`${base_url}${
                         movie.poster_path
-                    }`} alt={movie.name} 
+                    }`} alt={movie.title} 
                     onClick = {() => toggleSelection(movie)}
                     />
                     

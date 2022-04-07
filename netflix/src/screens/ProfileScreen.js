@@ -1,8 +1,5 @@
 import React from 'react'
 import Nav from '../components/Nav'
-import {useSelector } from 'react-redux'
-import {selectUser} from '../features/userSlice'
-import { auth } from '../components/fbase'
 import './ProfileScreen.css'
 import { getAuth, sendPasswordResetEmail } from "firebase/auth";
 import avatar from '../images/netflix-avatar.png'
@@ -31,7 +28,7 @@ function ProfileScreen()  {
                         <p></p>
 
 
-                        <button className='reset-text' onClick={() => sendPasswordResetEmail(auth,user.email).then(() => window.alert('emailsent'))}>Reset Password</button>
+                        <button className='reset-text' onClick={() => sendPasswordResetEmail(auth,user.email).then(() => window.alert('Email is sent, please check inbox'))}>Reset Password</button>
                         <button onClick={() => auth.signOut()} className="profileScreen__signOut">Sign Out</button>
                     </div>
                 </div>

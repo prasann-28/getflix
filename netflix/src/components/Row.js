@@ -1,18 +1,20 @@
-import React, {useState, useEffect, setState} from 'react'
+import React, {useState, useEffect} from 'react'
 import axios from './axios'
 import "./Row.css"
 import "./Banner.css"
-import Watch from './Watch'
 
-function Row({ title, fetchUrl, isLargeRow = false, setSelectedMovie }) {
+
+function Row({ title, fetchUrl, isLargeRow = false, setSelectedMovie, selectedMovie }) {
 
     const [movies, setMovies] = useState([]);
     // const [selectedMovie,setSelectedMovie] = useState(null)
 
     const base_url = "https://image.tmdb.org/t/p/original/";
 
-    const toggleSelection = (movie) => {
-        setSelectedMovie(movie)
+    const toggleSelection = async (movie) => {
+        
+         
+        // window.alert(selectedMovie.name)
     }
 
     useEffect(() =>{
@@ -39,11 +41,11 @@ function Row({ title, fetchUrl, isLargeRow = false, setSelectedMovie }) {
                 (!isLargeRow && movie.backdrop_path)) && (
                     <img 
                     key={movie.id}
-                    className={`row__poster ${isLargeRow && "row__posterLarge"}`}
+                    className={`row__poster ${isLargeRow? "row__posterLarge":''}`}
                     src={`${base_url}${
                         isLargeRow ? movie.poster_path : movie.backdrop_path
-                    }`} alt={movie.name} 
-                    onClick = {() => toggleSelection(movie)}
+                    }`} alt={movie.title} 
+                    onClick = {() => setSelectedMovie(movie)}
                     />
                     
                     

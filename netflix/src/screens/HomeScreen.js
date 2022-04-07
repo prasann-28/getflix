@@ -28,14 +28,15 @@ function HomeScreen() {
             fetchUrl={requests.fetchNetflixOriginals}
             isLargeRow
             setSelectedMovie={setSelectedMovie}
+            selectedMovie = {selectedMovie}
             
             />
-            <Row title="Trending Now" fetchUrl={requests.fetchTrending} setSelectedMovie={setSelectedMovie} />
-            <Row title="Action Movies" fetchUrl={requests.fetchActionMovies} setSelectedMovie={setSelectedMovie}  />
-            <Row title="Comedy Movies" fetchUrl={requests.fetchComedyMovies} setSelectedMovie={setSelectedMovie}  />
-            <Row title="Horror Movies" fetchUrl={requests.fetchHorrorMovies} setSelectedMovie={setSelectedMovie}  />
-            <Row title="Romance Movies" fetchUrl={requests.fetchRomanceMovies} setSelectedMovie={setSelectedMovie}  />
-            <Row title="Documentaries" fetchUrl={requests.fetchDocumentaries} setSelectedMovie={setSelectedMovie}  />
+            <Row title="Trending Now" fetchUrl={requests.fetchTrending} setSelectedMovie={setSelectedMovie} selectedMovie = {selectedMovie}/>
+            <Row title="Action Movies" fetchUrl={requests.fetchActionMovies} setSelectedMovie={setSelectedMovie}  selectedMovie = {selectedMovie}/>
+            <Row title="Comedy Movies" fetchUrl={requests.fetchComedyMovies} setSelectedMovie={setSelectedMovie}  selectedMovie = {selectedMovie}/>
+            <Row title="Horror Movies" fetchUrl={requests.fetchHorrorMovies} setSelectedMovie={setSelectedMovie}  selectedMovie = {selectedMovie}/>
+            <Row title="Romance Movies" fetchUrl={requests.fetchRomanceMovies} setSelectedMovie={setSelectedMovie}  selectedMovie = {selectedMovie}/>
+            <Row title="Documentaries" fetchUrl={requests.fetchDocumentaries} setSelectedMovie={setSelectedMovie}  selectedMovie = {selectedMovie}/>
 
         </div>
     )

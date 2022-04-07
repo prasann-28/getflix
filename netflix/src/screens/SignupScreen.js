@@ -1,8 +1,7 @@
-import React, {useState,useEffect, useRef} from 'react'
+import React, {useRef} from 'react'
 import { auth } from '../components/fbase';
 import './SignupScreen.css'
 import db from '../components/fbase'
-// import {collection, getDocs} from "firebase/firestore";
 import { doc, setDoc } from "firebase/firestore";
 import {serverStamp} from "../components/fbase"
 
@@ -19,9 +18,9 @@ function SignupScreen() {
             emailRef.current.value,
             passwordRef.current.value).then( async (authUser) => {
                 // console.log(authUser)
-                window.alert(authUser.user.emailVerified) 
+                // window.alert(authUser.user.emailVerified) 
                 authUser.user.sendEmailVerification().then( async () =>{
-                    window.alert('email sent')
+                    window.alert('Email is sent, please check inbox.')
                     
                     await setDoc(doc(db, "users", authUser.user.email), {
                     //    add things to firestore
@@ -50,7 +49,7 @@ function SignupScreen() {
             passwordRef.current.value
         ).then( async (authUser) => {
             console.log(authUser); 
-            window.alert("Login successful")
+            
             await setDoc(doc(db, "users", authUser.user.email), {
                 //    add things to firestore
                     lastLogin: serverStamp.now()

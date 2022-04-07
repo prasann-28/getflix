@@ -7,7 +7,7 @@ import db from '../components/fbase';
 import { increment, updateDoc} from "firebase/firestore";
 import { doc, setDoc, arrayUnion } from "firebase/firestore";
 
-// import {serverStamp} from "../components/fbase"
+
 import { getAuth } from "firebase/auth";
 import { useNavigate } from 'react-router-dom'
 
@@ -17,8 +17,8 @@ function Banner({selectedMovie, setPlayerVisible, playerVisible}) {
     const [movie, setMovie] = useState([]);
     const auth = getAuth()
     const navigate = useNavigate();
-    // const userRef = doc(db, "users", auth.currentUser.email);
-    // console.log(window.location.pathname)
+
+
 
     useEffect(() => {
         async function fetchData(){
@@ -30,24 +30,26 @@ function Banner({selectedMovie, setPlayerVisible, playerVisible}) {
             );
             return request;
         }
-
+        
+        // eslint-disable-next-line no-unused-expressions
         selectedMovie?setMovie(selectedMovie):fetchData();
-    }, [selectedMovie]);
+
+    },[ selectedMovie]);
     
 
     function truncateOverview(str,n) {
         return str?.length > n ? str.substr(0, n-1) + '...': str
     }
     const playMovie = async () => {
-        // const currentUserDetails = await getDoc(userRef);
-        setPlayerVisible(true)
-        setDoc(doc(db,'movies', movie.name), {
+       
+        await setDoc(doc(db,'movies', movie.name || movie.title), {
             timesPlayed: increment(1)
         },{merge: true})
-        updateDoc(doc(db, 'users', auth.currentUser.email ), {
+        await updateDoc(doc(db, 'users', auth.currentUser.email ), {
             timeWatched: increment(1),
             moviesPlayed: arrayUnion(movie)
         })
+        setPlayerVisible(true)
     }
 
     const addToList = async () => {
@@ -75,11 +77,12 @@ function Banner({selectedMovie, setPlayerVisible, playerVisible}) {
                 <h1 className="banner__title">{movie?.name || movie?.title || movie?.original_name}</h1>
                 <div className="banner__buttons">
                     <button className="banner__button" onClick={playMovie}>Play</button>
-                    <button className="banner__button" onClick={addToList}>Watch Later</button>
-                    {window.location.pathname == '/' ? <button className="banner__button my__list" onClick={() => navigate('/watchlist')}>My List</button>: <></>}
+                    {window.location.pathname === '/' ? <button className="banner__button" onClick={addToList}>Watch Later</button>: <></>}
+                    {window.location.pathname === '/' ? <button className="banner__button my__list" onClick={() => navigate('/watchlist')}>My List</button>: <></>}
                     
                 </div>
                 <h1 className="banner__description">{truncateOverview(movie?.overview,300)}</h1>
+
             </div>
 
             <div className="banner--fadeBottom"></div>
