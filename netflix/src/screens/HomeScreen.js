@@ -37,6 +37,7 @@ function HomeScreen() {
             <Row title="Horror Movies" fetchUrl={requests.fetchHorrorMovies} setSelectedMovie={setSelectedMovie}  selectedMovie = {selectedMovie}/>
             <Row title="Romance Movies" fetchUrl={requests.fetchRomanceMovies} setSelectedMovie={setSelectedMovie}  selectedMovie = {selectedMovie}/>
             <Row title="Documentaries" fetchUrl={requests.fetchDocumentaries} setSelectedMovie={setSelectedMovie}  selectedMovie = {selectedMovie}/>
+            <Row title="Animation" fetchUrl={requests.fetchAnime} setSelectedMovie={setSelectedMovie}  selectedMovie = {selectedMovie}/>
 
         </div>
     )
