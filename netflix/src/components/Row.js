@@ -47,18 +47,6 @@ function Row({ title, fetchUrl, isLargeRow = false, setSelectedMovie, selectedMo
                     }`} alt={movie.title} 
                     onClick = {() => setSelectedMovie(movie)}
                     />
-                    
-                    
-                //     <div className={`row__poster ${isLargeRow && "row__posterLarge"}`} 
-                //     style={{
-                //     backgroundImage: "url(`${base_url}${isLargeRow ? movie.poster_path : movie.backdrop_path}`)", 
-                //     backgroundSize: '100%',
-                //     backgroundPosition: 'center center',
-                //     objectFit: 'contain',
-                // }}>
-                //     <button className='row__button'>Play</button>
-                // </div>
-                    
                 )))}
 
             </div>

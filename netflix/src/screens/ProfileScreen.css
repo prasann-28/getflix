@@ -28,7 +28,6 @@
 }
 
 .profileScreen__details > h2{
-    background-color: grey;
     padding: 15px;
     font-size: 15px;
     padding-left: 20px;
@@ -89,4 +88,22 @@
 }
 .verify-messageh2 > u{
     cursor: pointer;
+}
+
+.details_div{
+    display: flex;
+    object-fit: contain;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: grey;
+    padding: 20px;
+}
+
+.image_div{
+    display: flex;
+    flex-direction: column;
+    /* object-fit: contain; */
+    color: #fff;
+    margin-left: 25px;
+    height: 1ch;
 }

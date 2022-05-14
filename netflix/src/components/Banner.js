@@ -15,10 +15,18 @@ import { useNavigate } from 'react-router-dom'
 function Banner({selectedMovie, setPlayerVisible, playerVisible}) {
 
     const [movie, setMovie] = useState([]);
+    const [vidIndex, setVidIndex] = useState(0)
     const auth = getAuth()
     const navigate = useNavigate();
 
-
+    const videos = [
+        'https://www.youtube.com/watch?v=sO9cBXRcBvo',
+        'https://www.youtube.com/watch?v=yzTuBuRdAyA',
+        'https://www.youtube.com/watch?v=qpgTC9MDx1o',
+        'https://www.youtube.com/watch?v=KRaWnd3LJfs',
+        'https://www.youtube.com/watch?v=adLGHcj_fmA',
+        'https://www.youtube.com/watch?v=U05fwua9-D4'
+    ]
 
     useEffect(() => {
         async function fetchData(){
@@ -41,7 +49,10 @@ function Banner({selectedMovie, setPlayerVisible, playerVisible}) {
         return str?.length > n ? str.substr(0, n-1) + '...': str
     }
     const playMovie = async () => {
-       
+        console.log(videos.length)
+        var idx = Math.floor(Math.random() * videos.length - 1 );
+        console.log(idx)
+        setVidIndex(idx)
         await setDoc(doc(db,'movies', movie.name || movie.title), {
             timesPlayed: increment(1)
         },{merge: true})
@@ -63,7 +74,7 @@ function Banner({selectedMovie, setPlayerVisible, playerVisible}) {
 
     return (
 
-        playerVisible? <div className='video-player'><ReactPlayer className='react_player' url='https://www.youtube.com/watch?v=EU6I8TxU6Z4' controls playing pip ></ReactPlayer>
+        playerVisible? <div className='video-player'><ReactPlayer className='react_player' url={videos[vidIndex]} controls playing pip ></ReactPlayer>
         <button onClick={() => setPlayerVisible(false)} className='close-button'><img  className='close-logo' src='https://flaticons.net/icon.php?slug_category=mobile-application&slug_icon=close' alt='Close button' /></button>        
         </div>
         :

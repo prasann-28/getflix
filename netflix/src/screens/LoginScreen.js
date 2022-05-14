@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState} from 'react'
 import "./LoginScreen.css"
 import SignupScreen from "./SignupScreen"
 // import db from '../components/fbase';
@@ -7,6 +7,7 @@ import logo from '../images/netflix-logo.png'
 
 function LoginScreen() {
     const [signIn, setSignIn] = useState(false);
+    const [register, setRegister] = useState(false);
     // const [users, setUsers] = useState([]);
     // const usersCollectionRef = collection(db, 'users');
 
@@ -22,31 +23,49 @@ function LoginScreen() {
     //     getUsers()
     // }, [])
 
+    const signInFunc = () => {
+        // eslint-disable-next-line no-unused-expressions
+        register?setRegister(false):null
+        setSignIn(true)
+    }
+
+    const registerFunc = () => {
+        // eslint-disable-next-line no-unused-expressions
+        signIn?setSignIn(false):null
+        setRegister(true)
+    }
+
     return (
         // <userList></userList>
         <div className="loginScreen">
             <div className="loginScreen__background">
                 <img className="loginScreen__logo" src={logo} alt="" />
-                <button onClick={() => setSignIn(true)} className="loginScreen__button">
+                <div className='loginScreen__button_div'>
+                <button onClick={registerFunc} className="loginScreen__button">
+                    Register
+                </button>
+                <button onClick={signInFunc} className="loginScreen__button">
                     Sign in
                 </button>
-                
+                </div>
                 <div className="loginScreen__gradient1" />
                 </div>
 
                 <div className="loginScreen__body">
                     {signIn? (
-                        <SignupScreen/>
+
+                        <SignupScreen logIn={true}/>
                     ):
+                    register?(<SignupScreen logIn={false}/>):
                     (
                         <>
                     <h1>Unlimited films, TV Programmes and more... </h1>
                     <h2>Watch anytime, anywhere. Cancel anytime</h2>
                     <h3>Ready to watch? Enter your email to create or renew your membership.</h3>
-                    <div className="loginScreen__input">
+                    <div className="loginScreen__input_container">
                         <form>
                             <input type="email" 
-                            className=""
+                            className="loginScreen__input"
                             placeholder="Enter your email"
                             />
                             <button
