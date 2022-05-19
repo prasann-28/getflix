@@ -25,15 +25,18 @@ function Banner({selectedMovie, setPlayerVisible, playerVisible}) {
         'https://www.youtube.com/watch?v=qpgTC9MDx1o',
         'https://www.youtube.com/watch?v=KRaWnd3LJfs',
         'https://www.youtube.com/watch?v=adLGHcj_fmA',
-        'https://www.youtube.com/watch?v=U05fwua9-D4'
-    ]
+        'https://www.youtube.com/watch?v=U05fwua9-D4',
+        'https://www.youtube.com/watch?v=34Na4j8AVgA',
+        'https://www.youtube.com/watch?v=SlPhMPnQ58k'
 
+    ]
+// +2
     useEffect(() => {
         async function fetchData(){
             const request = await axios.get(requests.fetchNetflixOriginals);
             setMovie(
                 request.data.results[
-                    Math.floor(Math.random() * request.data.results.length - 1 )
+                    Math.floor(Math.random() * request.data.results.length )
                 ]
             );
             return request;
@@ -50,9 +53,9 @@ function Banner({selectedMovie, setPlayerVisible, playerVisible}) {
     }
     const playMovie = async () => {
         console.log(videos.length)
-        var idx = Math.floor(Math.random() * videos.length - 1 );
+        var idx = Math.floor(Math.random() * 8);
         console.log(idx)
-        setVidIndex(idx)
+        setVidIndex(idx===-1?0:idx)
         await setDoc(doc(db,'movies', movie.name || movie.title), {
             timesPlayed: increment(1)
         },{merge: true})
